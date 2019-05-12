@@ -1,6 +1,6 @@
 {
   "name": "validation-helpers",
-  "version": "1.0.3-beta",
+  "version": "1.0.4-beta",
   "description": "validation-helpers",
   "main": "index.js",
   "scripts": {
