@@ -11,61 +11,57 @@ const isExist = userInput => {
 };
 
 const isEmail = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !Validator.isEmail(userInputTrimmed))
+  if (!Validator.isEmail(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'be a valid email');
 };
 exports.isEmail = isEmail;
 
 const isEqual = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !userInputTrimmed !== rule.value.toString().trim())
+  if (!userInputTrimmed !== rule.value.toString().trim())
     errors.push(rule.msg ? rule.msg : `be match with ${rule.value}`);
 };
 exports.isEqual = isEqual;
 
 const isValidUrl = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !Validator.isURL(userInputTrimmed))
+  if (!Validator.isURL(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'be a valid url');
 };
 exports.isValidUrl = isValidUrl;
 
 const isExactMax = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (
-    isExist(userInput)
-    && Validator.isNumeric(userInputTrimmed)
-    && +userInputTrimmed > rule.value
-  )
+  if (Validator.isNumeric(userInputTrimmed) && +userInputTrimmed > rule.value)
     errors.push(rule.msg ? rule.msg : `be number and maximum ${rule.value}`);
 };
 exports.isExactMax = isExactMax;
 
 const isExactMin = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (
-    isExist(userInput)
-    && Validator.isNumeric(userInputTrimmed)
-    && +userInputTrimmed < rule.value
-  )
+  if (Validator.isNumeric(userInputTrimmed) && +userInputTrimmed < rule.value)
     errors.push(rule.msg ? rule.msg : `be number and minimum ${rule.value}`);
 };
 exports.isExactMin = isExactMin;
 
 const isNumber = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !Validator.isNumeric(userInputTrimmed))
+  if (!Validator.isNumeric(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'This field must be a number');
 };
 exports.isNumber = isNumber;
 
 const isExactMaxLength = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (
-    isExist(userInput)
-    && !Validator.isLength(userInputTrimmed, { max: rule.value })
-  )
+  if (!Validator.isLength(userInputTrimmed, { max: rule.value }))
     errors.push(
       rule.msg
         ? rule.msg
@@ -75,11 +71,9 @@ const isExactMaxLength = (userInput, rule, errors) => {
 exports.isExactMaxLength = isExactMaxLength;
 
 const isExactMinLength = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (
-    isExist(userInput)
-    && !Validator.isLength(userInputTrimmed, { min: rule.value })
-  )
+  if (!Validator.isLength(userInputTrimmed, { min: rule.value }))
     errors.push(
       rule.msg
         ? rule.msg
@@ -89,11 +83,9 @@ const isExactMinLength = (userInput, rule, errors) => {
 exports.isExactMinLength = isExactMinLength;
 
 const isDate = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (
-    isExist(userInput)
-    && !moment(userInputTrimmed, rule.formats, true).isValid()
-  )
+  if (!moment(userInputTrimmed, rule.formats, true).isValid())
     errors.push(
       rule.msg
         ? rule.msg
@@ -103,8 +95,9 @@ const isDate = (userInput, rule, errors) => {
 exports.isDate = isDate;
 
 const isMobileNumber = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !Validator.isMobilePhone(userInputTrimmed))
+  if (!Validator.isMobilePhone(userInputTrimmed))
     errors.push(
       rule.msg ? rule.msg : 'This field should be a valid mobile number'
     );
@@ -112,10 +105,10 @@ const isMobileNumber = (userInput, errors, rule) => {
 exports.isMobileNumber = isMobileNumber;
 
 const isAlpha = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
   if (
-    isExist(userInput)
-    && !Validator.isAlpha(userInputTrimmed)
+    !Validator.isAlpha(userInputTrimmed)
     && !Validator.isAlpha(userInputTrimmed, ['ar'])
   )
     errors.push(
@@ -125,16 +118,16 @@ const isAlpha = (userInput, errors, rule) => {
 exports.isAlpha = isAlpha;
 
 const isObjectId = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !ObjectId.isValid(userInputTrimmed))
+  if (!ObjectId.isValid(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'This field must be a valid ObjectId');
 };
 exports.isObjectId = isObjectId;
 
 const NoSpace = (userInput, errors, rule) => {
-  const userInputTrimmed = isEmpty(userInput)
-    ? ''
-    : userInput.toString().trim();
+  if (!isExist(userInput)) return;
+  const userInputTrimmed = userInput.toString().trim();
   const spaces = userInputTrimmed.split(' ');
   if (spaces.length > 1)
     errors.push(rule.msg ? rule.msg : "This field shouldn't have any space");
@@ -148,11 +141,11 @@ const isRequired = (userInput, errors, rule) => {
 exports.isRequired = isRequired;
 
 const isArray = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   if (
-    isExist(userInput)
-    && (!Array.isArray(userInput)
-      || userInput.length < rule.minLength
-      || userInput.length > rule.maxLength)
+    !Array.isArray(userInput)
+    || userInput.length < rule.minLength
+    || userInput.length > rule.maxLength
   )
     errors.push(
       rule.msg
@@ -165,16 +158,17 @@ const isArray = (userInput, rule, errors) => {
 exports.isArray = isArray;
 
 const isBoolean = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (isExist(userInput) && !Validator.isBoolean(userInputTrimmed))
+  if (!Validator.isBoolean(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'be a valid boolean value');
 };
 exports.isBoolean = isBoolean;
 
 const isMember = (userInput, rule, errors) => {
+  if (!isExist(userInput)) return;
   if (
-    isExist(userInput)
-    && !rule.array
+    !rule.array
       .map(v =>
         v
           .toString()
