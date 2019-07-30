@@ -18,10 +18,10 @@ const isEmail = (userInput, errors, rule) => {
 };
 exports.isEmail = isEmail;
 
-const isEqual = (userInput, rule, errors) => {
+const isEqual = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (!userInputTrimmed !== rule.value.toString().trim())
+  if (userInputTrimmed !== rule.value.toString().trim())
     errors.push(rule.msg ? rule.msg : `be match with ${rule.value}`);
 };
 exports.isEqual = isEqual;

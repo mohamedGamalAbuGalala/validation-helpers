@@ -1,45 +1,46 @@
 const { expect } = require('chai');
 const { describe, beforeEach, it } = require('mocha');
 
-const { isEmail } = require('../../rulesLogic');
+const { isEqual } = require('../../rulesLogic');
 
-describe('Unit rulesLogic / isEmail', () => {
+describe('Unit rulesLogic / isEqual', () => {
   let userInput;
   let errors = [];
   const rule = {};
-  const inputText = 'mohamed.abugalala@gmail.com';
-  const defaultErrorMsg = 'be a valid email';
-  const customErrorMsg = 'this is not a valid mail';
+  const inputText = 'example user input';
+  const customErrorMsg = 'your input is not valid';
+  const defaultErrorMsg = `be match with ${inputText}`;
 
   beforeEach(() => {
     userInput = inputText;
     errors = [];
+    rule.value = inputText;
     rule.msg = customErrorMsg;
   });
 
   it('should not do anything if userInput is empty', () => {
     userInput = '';
-    isEmail(userInput, errors, rule);
+    isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });
 
   it(`should append to errors ${defaultErrorMsg} if no msg passed`, () => {
-    userInput = 'not.a.valid.mail';
+    userInput = 'another example user input';
     rule.msg = undefined;
-    isEmail(userInput, errors, rule);
+    isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(1);
     expect(errors[0]).to.equal(defaultErrorMsg);
   });
 
   it(`should append to errors ${customErrorMsg} if msg passed`, () => {
-    userInput = 'not.a.valid.mail';
-    isEmail(userInput, errors, rule);
+    userInput = 'another example user input';
+    isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(1);
     expect(errors[0]).to.equal(customErrorMsg);
   });
 
-  it('should return no errors if userInput is valid mail', () => {
-    isEmail(userInput, errors, rule);
+  it('should return no errors if userInput is same as expected', () => {
+    isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });
 });

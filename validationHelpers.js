@@ -70,7 +70,7 @@ module.exports = (userInput = '', rules) => {
         isValidUrl(userInput, errors, rule);
         break;
       case Rules.IS_EQUAL:
-        isEqual(userInput, rule, errors);
+        isEqual(userInput, errors, rule);
         break;
       case Rules.IS_EMAIL:
         isEmail(userInput, errors, rule);
