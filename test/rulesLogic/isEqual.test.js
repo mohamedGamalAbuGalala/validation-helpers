@@ -24,7 +24,7 @@ describe('Unit rulesLogic / isEqual', () => {
     expect(errors.length).to.equal(0);
   });
 
-  it(`should append to errors ${defaultErrorMsg} if no msg passed`, () => {
+  it(`should append to errors ${defaultErrorMsg} if input is not valid & no msg passed`, () => {
     userInput = 'another example user input';
     rule.msg = undefined;
     isEqual(userInput, errors, rule);
@@ -32,7 +32,7 @@ describe('Unit rulesLogic / isEqual', () => {
     expect(errors[0]).to.equal(defaultErrorMsg);
   });
 
-  it(`should append to errors ${customErrorMsg} if msg passed`, () => {
+  it(`should append to errors ${customErrorMsg} if input is not valid & msg passed`, () => {
     userInput = 'another example user input';
     isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(1);
