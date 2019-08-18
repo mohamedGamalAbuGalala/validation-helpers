@@ -21,7 +21,7 @@ describe('Unit rulesLogic / isExactMin', () => {
   });
 
   it('should not do anything if userInput is empty', () => {
-    userInput = '';
+    userInput = {};
     isExactMin(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });

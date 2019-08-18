@@ -21,7 +21,7 @@ describe('Unit rulesLogic / isExactMax', () => {
   });
 
   it('should not do anything if userInput is empty', () => {
-    userInput = '';
+    userInput = {};
     isExactMax(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });
