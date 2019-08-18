@@ -64,7 +64,7 @@ module.exports = (userInput = '', rules) => {
         isExactMin(userInput, rule, errors);
         break;
       case Rules.MAX:
-        isExactMax(userInput, rule, errors);
+        isExactMax(userInput, errors, rule);
         break;
       case Rules.IS_URL:
         isValidUrl(userInput, errors, rule);

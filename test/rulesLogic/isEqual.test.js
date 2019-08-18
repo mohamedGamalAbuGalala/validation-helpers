@@ -39,7 +39,9 @@ describe('Unit rulesLogic / isEqual', () => {
     expect(errors[0]).to.equal(customErrorMsg);
   });
 
-  it('should return no errors if userInput is same as expected', () => {
+  it('should return no errors if userInput is same as expected even if has extra spaces', () => {
+    userInput += '    ';
+    rule.value = `    ${rule.value}`;
     isEqual(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });

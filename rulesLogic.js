@@ -34,7 +34,7 @@ const isValidUrl = (userInput, errors, rule) => {
 };
 exports.isValidUrl = isValidUrl;
 
-const isExactMax = (userInput, rule, errors) => {
+const isExactMax = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
   if (Validator.isNumeric(userInputTrimmed) && +userInputTrimmed > rule.value)

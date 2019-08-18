@@ -38,7 +38,8 @@ describe('Unit rulesLogic / isEmail', () => {
     expect(errors[0]).to.equal(customErrorMsg);
   });
 
-  it('should return no errors if userInput is valid mail', () => {
+  it('should return no errors if userInput is valid mail even if has extra spaces', () => {
+    userInput += '    ';
     isEmail(userInput, errors, rule);
     expect(errors.length).to.equal(0);
   });
