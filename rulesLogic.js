@@ -36,14 +36,16 @@ exports.isValidUrl = isValidUrl;
 
 const isExactMax = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
+  isNumber(userInput, errors, rule);
   const userInputTrimmed = userInput.toString().trim();
   if (Validator.isNumeric(userInputTrimmed) && +userInputTrimmed > rule.value)
     errors.push(rule.msg ? rule.msg : `be number and maximum ${rule.value}`);
 };
 exports.isExactMax = isExactMax;
 
-const isExactMin = (userInput, rule, errors) => {
+const isExactMin = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
+  isNumber(userInput, errors, rule);
   const userInputTrimmed = userInput.toString().trim();
   if (Validator.isNumeric(userInputTrimmed) && +userInputTrimmed < rule.value)
     errors.push(rule.msg ? rule.msg : `be number and minimum ${rule.value}`);

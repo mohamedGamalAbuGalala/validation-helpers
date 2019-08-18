@@ -61,7 +61,7 @@ module.exports = (userInput = '', rules) => {
         isNumber(userInput, errors, rule);
         break;
       case Rules.MIN:
-        isExactMin(userInput, rule, errors);
+        isExactMin(userInput, errors, rule);
         break;
       case Rules.MAX:
         isExactMax(userInput, errors, rule);
