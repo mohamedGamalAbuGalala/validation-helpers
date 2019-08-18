@@ -4,7 +4,8 @@
   "description": "validation-helpers",
   "main": "index.js",
   "scripts": {
-    "test": "mocha  --recursive --watch ",
+    "test": "mocha  --recursive",
+    "test:watch": "mocha  --recursive --watch ",
     "coverage": "nyc npm run test"
   },
   "repository": {
