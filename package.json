@@ -29,7 +29,7 @@
     "lodash": "^4.17.11",
     "moment": "^2.24.0",
     "mongoose": "^5.4.20",
-    "validator": "^10.11.0"
+    "validator": "^11.1.0"
   },
   "devDependencies": {
     "eslint": "^5.16.0",
