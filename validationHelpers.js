@@ -49,7 +49,7 @@ module.exports = (userInput = '', rules) => {
         isMobileNumber(userInput, errors, rule);
         break;
       case Rules.IS_DATE:
-        isDate(userInput, rule, errors);
+        isDate(userInput, errors, rule);
         break;
       case Rules.MIN_LENGTH:
         isExactMinLength(userInput, errors, rule);

@@ -84,10 +84,22 @@ const isExactMinLength = (userInput, errors, rule) => {
 };
 exports.isExactMinLength = isExactMinLength;
 
-const isDate = (userInput, rule, errors) => {
+/**
+ *
+ * @param {String} userInput input to be check it's validity
+ * @param {array} errors push to it an error message if this rule fails
+ * @param {Object} rule is an object have a rule instructions
+ * @param {Array[String]} rule.formats Any moment valid format
+ * @param {String} rule.msg Custom message for this rule
+ */
+const isDate = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (!moment(userInputTrimmed, rule.formats, true).isValid())
+  if (!rule.formats || !rule.formats.length)
+    // eslint-disable-next-line no-param-reassign
+    rule.formats = ['MM-DD-YYYY', 'YYYY-MM-DD', 'DD-MM-YYYY'];
+  const userDate = moment(userInputTrimmed, rule.formats, true);
+  if (!userDate.isValid())
     errors.push(
       rule.msg
         ? rule.msg
