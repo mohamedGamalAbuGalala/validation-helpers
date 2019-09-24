@@ -60,7 +60,7 @@ const isNumber = (userInput, errors, rule) => {
 };
 exports.isNumber = isNumber;
 
-const isExactMaxLength = (userInput, rule, errors) => {
+const isExactMaxLength = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
   if (!Validator.isLength(userInputTrimmed, { max: rule.value }))
@@ -72,7 +72,7 @@ const isExactMaxLength = (userInput, rule, errors) => {
 };
 exports.isExactMaxLength = isExactMaxLength;
 
-const isExactMinLength = (userInput, rule, errors) => {
+const isExactMinLength = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
   if (!Validator.isLength(userInputTrimmed, { min: rule.value }))

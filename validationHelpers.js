@@ -52,10 +52,10 @@ module.exports = (userInput = '', rules) => {
         isDate(userInput, rule, errors);
         break;
       case Rules.MIN_LENGTH:
-        isExactMinLength(userInput, rule, errors);
+        isExactMinLength(userInput, errors, rule);
         break;
       case Rules.MAX_LENGTH:
-        isExactMaxLength(userInput, rule, errors);
+        isExactMaxLength(userInput, errors, rule);
         break;
       case Rules.IS_NUMBER:
         isNumber(userInput, errors, rule);
