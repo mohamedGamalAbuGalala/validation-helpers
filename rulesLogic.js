@@ -1,4 +1,3 @@
-const { ObjectId } = require('mongoose').Types;
 const Validator = require('validator');
 const moment = require('moment');
 const isEmpty = require('./isEmpty');
@@ -120,11 +119,21 @@ exports.isMobileNumber = isMobileNumber;
 
 const isAlpha = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
-  const userInputTrimmed = userInput.toString().trim();
-  if (
-    !Validator.isAlpha(userInputTrimmed)
-    && !Validator.isAlpha(userInputTrimmed, ['ar'])
-  )
+  let hasError = false;
+  userInput
+    .toString()
+    .trim()
+    .split(' ')
+    .forEach(userInputSplitted => {
+      const userInputSplittedTrimmed = userInputSplitted.trim();
+      if (
+        userInputSplittedTrimmed
+        && !Validator.isAlpha(userInputSplittedTrimmed)
+        && !Validator.isAlpha(userInputSplittedTrimmed, ['ar'])
+      )
+        hasError = true;
+    });
+  if (hasError)
     errors.push(
       rule.msg ? rule.msg : 'This field should consist of alphabets only'
     );
@@ -134,25 +143,33 @@ exports.isAlpha = isAlpha;
 const isObjectId = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
-  if (!ObjectId.isValid(userInputTrimmed))
+  if (!Validator.isMongoId(userInputTrimmed))
     errors.push(rule.msg ? rule.msg : 'This field must be a valid ObjectId');
 };
 exports.isObjectId = isObjectId;
 
-const NoSpace = (userInput, errors, rule) => {
+const noSpace = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
   const userInputTrimmed = userInput.toString().trim();
   const spaces = userInputTrimmed.split(' ');
   if (spaces.length > 1)
-    errors.push(rule.msg ? rule.msg : "This field shouldn't have any space");
+    errors.push(rule.msg ? rule.msg : 'This field shouldn\'t have any space');
 };
-exports.NoSpace = NoSpace;
+exports.noSpace = noSpace;
 
 const isRequired = (userInput, errors, rule) => {
   if (!isExist(userInput))
     errors.push(rule.msg ? rule.msg : 'This field is required');
 };
 exports.isRequired = isRequired;
+
+const isBoolean = (userInput, errors, rule) => {
+  if (!isExist(userInput)) return;
+  const userInputTrimmed = userInput.toString().trim();
+  if (!Validator.isBoolean(userInputTrimmed))
+    errors.push(rule.msg ? rule.msg : 'be a valid boolean value');
+};
+exports.isBoolean = isBoolean;
 
 const isArray = (userInput, rule, errors) => {
   if (!isExist(userInput)) return;
@@ -170,14 +187,6 @@ const isArray = (userInput, rule, errors) => {
     );
 };
 exports.isArray = isArray;
-
-const isBoolean = (userInput, errors, rule) => {
-  if (!isExist(userInput)) return;
-  const userInputTrimmed = userInput.toString().trim();
-  if (!Validator.isBoolean(userInputTrimmed))
-    errors.push(rule.msg ? rule.msg : 'be a valid boolean value');
-};
-exports.isBoolean = isBoolean;
 
 const isMember = (userInput, rule, errors) => {
   if (!isExist(userInput)) return;

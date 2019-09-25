@@ -70,7 +70,7 @@ class Builder {
     return this;
   }
 
-  isArray(minLength, maxLength, msg = null) {
+  isArray(minLength = 1, maxLength = 10000, msg = null) {
     this.value.push({
       type: Rules.IS_ARRAY,
       minLength,

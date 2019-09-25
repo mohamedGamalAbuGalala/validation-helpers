@@ -13,10 +13,18 @@
     "url": "git+https://github.com/mohamedGamalAbuGalala/validation-helpers.git"
   },
   "keywords": [
+    "validation helpers",
+    "validation helper",
+    "validations",
     "validation",
     "helpers",
+    "helper",
     "request validation",
-    "validator"
+    "request validations",
+    "express validation",
+    "express validations",
+    "validator",
+    "validators"
   ],
   "author": "mohamedGamalAbuGalala",
   "license": "ISC",
@@ -25,12 +33,12 @@
   },
   "homepage": "https://github.com/mohamedGamalAbuGalala/validation-helpers#readme",
   "dependencies": {
-    "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "mongoose": "^5.4.20",
     "validator": "^10.11.0"
   },
   "devDependencies": {
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.20",
     "chai": "^4.2.0",
     "eslint": "^5.16.0",
     "eslint-config-airbnb-base": "^13.1.0",

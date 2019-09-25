@@ -3,7 +3,7 @@ const {
   isBoolean,
   isArray,
   isRequired,
-  NoSpace,
+  noSpace,
   isObjectId,
   isAlpha,
   isMobileNumber,
@@ -37,7 +37,7 @@ module.exports = (userInput = '', rules) => {
         isRequired(userInput, errors, rule);
         break;
       case Rules.NO_SPACE:
-        NoSpace(userInput, errors, rule);
+        noSpace(userInput, errors, rule);
         break;
       case Rules.IS_OBJECT_ID:
         isObjectId(userInput, errors, rule);

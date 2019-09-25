@@ -7,7 +7,7 @@ describe('Unit rulesLogic / isNumber', () => {
   let userInput;
   let errors = [];
   const rule = {};
-  const inputText = '1';
+  const inputText = '-1.050';
   const customErrorMsg = 'Input should be a valid number';
   const defaultErrorMsg = 'This field must be a number';
 
@@ -32,10 +32,34 @@ describe('Unit rulesLogic / isNumber', () => {
   });
 
   it(`should append to errors ${customErrorMsg} if input is not valid & msg passed`, () => {
-    userInput = '-0-';
+    userInput = 'hello0';
     isNumber(userInput, errors, rule);
     expect(errors.length).to.equal(1);
     expect(errors[0]).to.equal(customErrorMsg);
+  });
+
+  it('should return no errors if userInput is same as expected', () => {
+    userInput = +1.050;
+    isNumber(userInput, errors, rule);
+    expect(errors.length).to.equal(0);
+  });
+
+  it('should return no errors if userInput is same as expected', () => {
+    userInput = -1.050;
+    isNumber(userInput, errors, rule);
+    expect(errors.length).to.equal(0);
+  });
+
+  it('should return no errors if userInput is same as expected', () => {
+    userInput = -0;
+    isNumber(userInput, errors, rule);
+    expect(errors.length).to.equal(0);
+  });
+
+  it('should return no errors if userInput is same as expected', () => {
+    userInput = +0;
+    isNumber(userInput, errors, rule);
+    expect(errors.length).to.equal(0);
   });
 
   it('should return no errors if userInput is same as expected', () => {
