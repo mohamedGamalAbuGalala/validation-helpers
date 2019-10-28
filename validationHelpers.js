@@ -25,13 +25,13 @@ module.exports = (userInput = '', rules) => {
   rules.forEach(rule => {
     switch (rule.type) {
       case Rules.IS_MEMBER:
-        isMember(userInput, rule, errors);
+        isMember(userInput, errors, rule);
         break;
       case Rules.IS_BOOLEAN:
         isBoolean(userInput, errors, rule);
         break;
       case Rules.IS_ARRAY:
-        isArray(userInput, rule, errors);
+        isArray(userInput, errors, rule);
         break;
       case Rules.REQUIRED:
         isRequired(userInput, errors, rule);

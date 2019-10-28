@@ -125,11 +125,9 @@ const isAlpha = (userInput, errors, rule) => {
     .trim()
     .split(' ')
     .forEach(userInputSplitted => {
-      const userInputSplittedTrimmed = userInputSplitted.trim();
       if (
-        userInputSplittedTrimmed
-        && !Validator.isAlpha(userInputSplittedTrimmed)
-        && !Validator.isAlpha(userInputSplittedTrimmed, ['ar'])
+        userInputSplitted
+        && !Validator.isAlpha(userInputSplitted, rule.locals)
       )
         hasError = true;
     });
@@ -153,7 +151,7 @@ const noSpace = (userInput, errors, rule) => {
   const userInputTrimmed = userInput.toString().trim();
   const spaces = userInputTrimmed.split(' ');
   if (spaces.length > 1)
-    errors.push(rule.msg ? rule.msg : 'This field shouldn\'t have any space');
+    errors.push(rule.msg ? rule.msg : "This field shouldn't have any space");
 };
 exports.noSpace = noSpace;
 
@@ -171,8 +169,13 @@ const isBoolean = (userInput, errors, rule) => {
 };
 exports.isBoolean = isBoolean;
 
-const isArray = (userInput, rule, errors) => {
-  if (!isExist(userInput)) return;
+const isArray = (userInput, errors, rule) => {
+  if (
+    userInput === undefined
+    || userInput === null
+    || (typeof userInput === 'string' && userInput.trim().length === 0)
+  )
+    return;
   if (
     !Array.isArray(userInput)
     || userInput.length < rule.minLength
@@ -181,15 +184,18 @@ const isArray = (userInput, rule, errors) => {
     errors.push(
       rule.msg
         ? rule.msg
-        : `must be an array with min length of ${
-          rule.minLength
-        } and max length of ${rule.maxLength}`
+        : `must be an array with min length of ${rule.minLength} and max length of ${rule.maxLength}`
     );
 };
 exports.isArray = isArray;
 
-const isMember = (userInput, rule, errors) => {
+const isMember = (userInput, errors, rule) => {
   if (!isExist(userInput)) return;
+  if (!rule.array || !Array.isArray(rule.array)) throw new Error('rule.array must be a valid Array');
+  const userInputTrimmed = userInput
+    .toString()
+    .toLowerCase()
+    .trim();
   if (
     !rule.array
       .map(v =>
@@ -198,13 +204,10 @@ const isMember = (userInput, rule, errors) => {
           .toLowerCase()
           .trim()
       )
-      .includes(
-        userInput
-          .toString()
-          .toLowerCase()
-          .trim()
-      )
+      .includes(userInputTrimmed)
   )
-    errors.push(rule.msg ? rule.msg : 'be a member of select provided');
+    errors.push(rule.msg ? rule.msg : `be a member of ${rule.array}`);
 };
 exports.isMember = isMember;
+
+// TODO: Add isString

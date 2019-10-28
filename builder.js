@@ -50,8 +50,8 @@ class Builder {
     return this;
   }
 
-  isAlpha(msg = null) {
-    this.value.push({ type: Rules.IS_ALPHA, msg });
+  isAlpha(msg = null, locals = []) {
+    this.value.push({ type: Rules.IS_ALPHA, msg, locals });
     return this;
   }
 
