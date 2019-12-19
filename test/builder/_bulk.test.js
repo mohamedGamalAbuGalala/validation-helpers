@@ -4,7 +4,7 @@ const { describe, it } = require('mocha');
 const { Builder } = require('../..');
 
 describe('Unit Builder / bulk', () => {
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 4', () => {
     const { rules } = new Builder()
       .required()
       .isNumber()
@@ -13,7 +13,7 @@ describe('Unit Builder / bulk', () => {
     expect(rules.length).to.equal(4);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 7', () => {
     const { rules } = new Builder()
       .required()
       .isAlpha()
@@ -25,22 +25,22 @@ describe('Unit Builder / bulk', () => {
     expect(rules.length).to.equal(7);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 1', () => {
     const { rules } = new Builder().isURL();
     expect(rules.length).to.equal(1);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 2', () => {
     const { rules } = new Builder().isBoolean().isMember([1, 2]);
     expect(rules.length).to.equal(2);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 1.1', () => {
     const { rules } = new Builder().isMongoObjectId();
     expect(rules.length).to.equal(1);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 3', () => {
     const { rules } = new Builder()
       .isMobile()
       .isDate(['L'])
@@ -48,7 +48,7 @@ describe('Unit Builder / bulk', () => {
     expect(rules.length).to.equal(3);
   });
 
-  it('should append to rules for each method in chain', () => {
+  it('should append to rules for each method in chain 0', () => {
     const { rules } = new Builder();
     expect(rules.length).to.equal(0);
   });
