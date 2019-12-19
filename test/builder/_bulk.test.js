@@ -10,6 +10,7 @@ describe('Unit Builder / bulk', () => {
       .isNumber()
       .min(1)
       .max(5);
+
     expect(rules.length).to.equal(4);
   });
 
