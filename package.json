@@ -1,23 +1,31 @@
 {
   "name": "validation-helpers",
-  "version": "0.4.1",
+  "version": "0.4.0",
   "description": "validation-helpers",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/@mohamedGamalAbuGalala"
+    "test": "mocha  --recursive",
+    "test:watch": "mocha  --recursive --watch ",
+    "coverage": "nyc npm run test"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mohamedGamalAbuGalala/validation-helpers.git"
   },
   "keywords": [
+    "validation helpers",
+    "validation helper",
+    "validations",
     "validation",
+    "validate",
     "helpers",
+    "helper",
     "request validation",
-    "validator"
+    "request validations",
+    "express validation",
+    "express validations",
+    "validator",
+    "validators"
   ],
   "author": "mohamedGamalAbuGalala",
   "license": "ISC",
@@ -26,14 +34,17 @@
   },
   "homepage": "https://github.com/mohamedGamalAbuGalala/validation-helpers#readme",
   "dependencies": {
-    "lodash": "^4.17.11",
     "moment": "^2.24.0",
-    "mongoose": "^5.4.20",
-    "validator": "^11.1.0"
+    "validator": "^10.11.0"
   },
   "devDependencies": {
-    "eslint": "^6.4.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.17.1"
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.20",
+    "chai": "^4.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.1",
+    "mocha": "^6.2.0",
+    "nyc": "^14.1.1"
   }
 }
