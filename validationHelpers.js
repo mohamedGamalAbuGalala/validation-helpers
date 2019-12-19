@@ -3,7 +3,7 @@ const {
   isBoolean,
   isArray,
   isRequired,
-  NoSpace,
+  noSpace,
   isObjectId,
   isAlpha,
   isMobileNumber,
@@ -25,19 +25,19 @@ module.exports = (userInput = '', rules) => {
   rules.forEach(rule => {
     switch (rule.type) {
       case Rules.IS_MEMBER:
-        isMember(userInput, rule, errors);
+        isMember(userInput, errors, rule);
         break;
       case Rules.IS_BOOLEAN:
         isBoolean(userInput, errors, rule);
         break;
       case Rules.IS_ARRAY:
-        isArray(userInput, rule, errors);
+        isArray(userInput, errors, rule);
         break;
       case Rules.REQUIRED:
         isRequired(userInput, errors, rule);
         break;
       case Rules.NO_SPACE:
-        NoSpace(userInput, errors, rule);
+        noSpace(userInput, errors, rule);
         break;
       case Rules.IS_OBJECT_ID:
         isObjectId(userInput, errors, rule);
@@ -49,28 +49,28 @@ module.exports = (userInput = '', rules) => {
         isMobileNumber(userInput, errors, rule);
         break;
       case Rules.IS_DATE:
-        isDate(userInput, rule, errors);
+        isDate(userInput, errors, rule);
         break;
       case Rules.MIN_LENGTH:
-        isExactMinLength(userInput, rule, errors);
+        isExactMinLength(userInput, errors, rule);
         break;
       case Rules.MAX_LENGTH:
-        isExactMaxLength(userInput, rule, errors);
+        isExactMaxLength(userInput, errors, rule);
         break;
       case Rules.IS_NUMBER:
         isNumber(userInput, errors, rule);
         break;
       case Rules.MIN:
-        isExactMin(userInput, rule, errors);
+        isExactMin(userInput, errors, rule);
         break;
       case Rules.MAX:
-        isExactMax(userInput, rule, errors);
+        isExactMax(userInput, errors, rule);
         break;
       case Rules.IS_URL:
         isValidUrl(userInput, errors, rule);
         break;
       case Rules.IS_EQUAL:
-        isEqual(userInput, rule, errors);
+        isEqual(userInput, errors, rule);
         break;
       case Rules.IS_EMAIL:
         isEmail(userInput, errors, rule);
