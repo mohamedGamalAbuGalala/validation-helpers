@@ -41,7 +41,7 @@
     "lodash": "^4.17.11",
     "mongoose": "^5.4.20",
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
+    "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-plugin-import": "^2.17.1",
     "mocha": "^6.2.0",
