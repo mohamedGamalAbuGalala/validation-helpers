@@ -35,7 +35,7 @@
   "homepage": "https://github.com/mohamedGamalAbuGalala/validation-helpers#readme",
   "dependencies": {
     "moment": "^2.24.0",
-    "validator": "^12.1.0"
+    "validator": "^13.1.17"
   },
   "devDependencies": {
     "lodash": "^4.17.11",
